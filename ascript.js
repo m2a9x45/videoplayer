@@ -20,6 +20,16 @@ function playpause()
     playButton.innerHTML = "<img src='https://png.icons8.com/ios/50/000000/circled-play-filled.png' width='44' height='36'/>";
   }
 }
+function showcontrols()
+{
+  var video = document.getElementById("video");
+  var allvideocontrols = document.getElementById("video-controls");
+  //var allvideocontrols = document.getElementById("video-controls");
+  console.log("mouseed over");
+  allvideocontrols.style.visibility='initial'
+  //allvideocontrols.style.visibility='visable'
+}
+
 window.onload = function() {
 
   // Video
@@ -31,15 +41,22 @@ window.onload = function() {
   // Sliders
   var seekBar = document.getElementById("seek-bar");
   var volumeBar = document.getElementById("volume-bar");
+  // all controls
+  var allvideocontrols = document.getElementById("video-controls");
+
+    //document.getElementById("video-controls").onmouseover = hello;
+    video.onmouseover = showcontrols;
 
 document.addEventListener("keydown",function()
 {
     //console.log("key pressed");
     var char = event.which;
-    //console.log(char);
+    console.log(char);
     if (char == 32) {
       playpause();
+      allvideocontrols.style.visibility='hidden'
     }
+
 });
 
 playButton.addEventListener("click", function() {
