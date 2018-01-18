@@ -1,0 +1,3 @@
+18/01/2018
+-Play pause functionality can now be use by pressing space-bar
+-Video controls now have a white background set to 0.5 to improve visability
