@@ -1,5 +1,5 @@
 18/01/2018
 -Play pause functionality can now be use by pressing space-bar
--Video controls now have a white background set to 0.5 to improve visability
+-Video controls now have a white background set to 0.5 opacity to improve visability
 -Volume step has benn changed from 0.1 to 0.01 to allow finer control over the volume of the video
 -Added user instruction on how to add videos to the player i.e src="LINK GOES HERE"
