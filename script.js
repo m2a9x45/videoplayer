@@ -12,12 +12,15 @@ function playpause()
     // Play the video
     video.play();
     // Update the button text to 'Pause'
-    playButton.innerHTML = "<img src='https://png.icons8.com/ios/50/000000/circled-pause-filled.png' width='44' height='36'/>";
+    // playButton.innerHTML = "<img src='https://png.icons8.com/ios/50/000000/circled-pause-filled.png' width='44' height='36'/>";
+    playButton.innerHTML = "<i class='material-icons'>pause</i>";
+
   } else {
     // Pause the video
     video.pause();
     // Update the button text to 'Play'
-    playButton.innerHTML = "<img src='https://png.icons8.com/ios/50/000000/circled-play-filled.png' width='44' height='36'/>";
+    // playButton.innerHTML = "<img src='https://png.icons8.com/ios/50/000000/circled-play-filled.png' width='44' height='36'/>";
+    playButton.innerHTML = "<i class='material-icons'>play_arrow</i>";
   }
 }
 window.onload = function() {
@@ -31,6 +34,8 @@ window.onload = function() {
   // Sliders
   var seekBar = document.getElementById("seek-bar");
   var volumeBar = document.getElementById("volume-bar");
+  //aligning volume bar and player volume
+  video.volume = volumeBar.value;
 
 document.addEventListener("keydown",function()
 {
@@ -46,18 +51,24 @@ playButton.addEventListener("click", function() {
   playpause();
 });
 muteButton.addEventListener("click", function() {
+  var currentvolume = video.volume; //as soon as mute button is click current volume is stored in currentvolume var
+  console.log(currentvolume); //this is then logged to console to aid debugging
+
   if (video.muted == false) {
     // Mute the video
     video.muted = true;
-
-    // Update the button text
-    muteButton.innerHTML = "<img src='https://png.icons8.com/ios/50/000000/no-audio-filled.png' width='44' height='36'/>";
+    volumeBar.value = 0; //when video is mutted set volume bar to muted state
+    // muteButton.innerHTML = "<img src='https://png.icons8.com/ios/50/000000/no-audio-filled.png' width='44' height='36'/>";
+    muteButton.innerHTML = "<i class='material-icons'>volume_off</i>";
   } else {
     // Unmute the video
     video.muted = false;
+    video.volume = currentvolume; // video is unmuted reset volume to orginal level
+    console.log(currentvolume); // log the new volume and manuall compair to check it wored
+    volumeBar.value = currentvolume; // move volume bar  to  the same level
+    // muteButton.innerHTML = "<img src='https://png.icons8.com/ios/50/000000/speaker-filled.png' width='44' height='36'/>";
+    muteButton.innerHTML = "<i class='material-icons'>volume_down</i>";
 
-    // Update the button text
-    muteButton.innerHTML = "<img src='https://png.icons8.com/ios/50/000000/speaker-filled.png' width='44' height='36'/>";
   }
 });
 fullScreenButton.addEventListener("click", function()
@@ -77,7 +88,7 @@ fullScreenButton.addEventListener("click", function()
 seekBar.addEventListener("input", function()
 {
 	console.log("moved");
-	playButton.innerHTML = "<img src='https://png.icons8.com/ios/50/000000/circled-pause-filled.png' width='44' height='36'/>";
+	playButton.innerHTML = "<i class='material-icons'>pause</i>";
 
 
   // Calculate were the playhead has been draged
@@ -106,6 +117,10 @@ video.addEventListener("timeupdate", function()
   var cursecs = Math.floor(video.currentTime - curmins * 60);
   var durmins = Math.floor(video.duration/60);
   var dursecs = Math.floor(video.duration - durmins * 60);
+  //console.log(cursecs);
+  if (cursecs < 10) {
+    cursecs = "0" + cursecs;
+  }
 
   curtimetext.innerHTML = curmins+":"+cursecs;
   durtimetext.innerHTML = durmins+":"+dursecs;
@@ -125,5 +140,17 @@ volumeBar.addEventListener("input", function()
 {
   // Update the video volume
   video.volume = volumeBar.value;
+  //console.log(volumeBar.value);
+  if (volumeBar.value > 0.5) {
+    //show sound up icon
+    muteButton.innerHTML = "<i class='material-icons'>volume_up</i>";
+  }
+  else if (volumeBar.value == 0) {
+    muteButton.innerHTML = "<i class='material-icons'>volume_off</i>";
+  }
+  else {
+    //show volume down icon
+    muteButton.innerHTML = "<i class='material-icons'>volume_down</i>";
+  }
 });
 };
