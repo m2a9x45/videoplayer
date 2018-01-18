@@ -5,12 +5,45 @@
 myfunction();
 my first function
 */
+var videoisplaying = false; //change to true for auto play
+function showcontrols()
+{
+  var video = document.getElementById("video");
+  var video = document.getElementById("video");
+  var allvideocontrols = document.getElementById("video-controls");
+  //var allvideocontrols = document.getElementById("video-controls");
+
+  $(document.getElementById("video-controls")).fadeIn('fast');
+  //allvideocontrols.style.visibility='initial';
+  //allvideocontrols.style.visibility='visable'
+  console.log("video is playing:" + videoisplaying);
+  if (videoisplaying == true) {
+    controlfade();
+    console.log("fading");
+  }
+  else {
+    allvideocontrols.style.visibility='initial';
+  }
+
+}
+function controlfade()
+{
+  setTimeout(function()
+  {
+    var allvideocontrols = document.getElementById("video-controls");
+    console.log("inside timout");
+    //allvideocontrols.style.visibility='hidden';
+    //allvideocontrols.fadeOut('fast');
+    $(document.getElementById("video-controls")).fadeOut('fast');
+}, 6000);
+}
 function playpause()
 {
   var playButton = document.getElementById("play-pause");
   if (video.paused == true) {
     // Play the video
     video.play();
+    videoisplaying = true;
     // Update the button text to 'Pause'
     // playButton.innerHTML = "<img src='https://png.icons8.com/ios/50/000000/circled-pause-filled.png' width='44' height='36'/>";
     playButton.innerHTML = "<i class='material-icons'>pause</i>";
@@ -18,6 +51,7 @@ function playpause()
   } else {
     // Pause the video
     video.pause();
+    videoisplaying = false;
     // Update the button text to 'Play'
     // playButton.innerHTML = "<img src='https://png.icons8.com/ios/50/000000/circled-play-filled.png' width='44' height='36'/>";
     playButton.innerHTML = "<i class='material-icons'>play_arrow</i>";
@@ -37,6 +71,12 @@ window.onload = function() {
   //aligning volume bar and player volume
   video.volume = volumeBar.value;
 
+  var allvideocontrols = document.getElementById("video-controls");
+
+    //document.getElementById("video-controls").onmouseover = hello;
+  video.onmouseover = showcontrols;
+  video.onmousemove = showcontrols;
+
 document.addEventListener("keydown",function()
 {
     //console.log("key pressed");
@@ -44,6 +84,7 @@ document.addEventListener("keydown",function()
     //console.log(char);
     if (char == 32) {
       playpause();
+      showcontrols();
     }
 });
 

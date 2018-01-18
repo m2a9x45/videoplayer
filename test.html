@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>The next YouTube</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="script.js"></script>
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 		<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
@@ -15,19 +16,20 @@
 				</video>
 			</div>
 			<div id="video-controls">
-				<div id="backcolour">
-				</div>
-				<div id="play">
-					<!-- <button type="button" id="play-pause"><img id="image"src="https://png.icons8.com/ios/50/000000/circled-pause-filled.png"/></button> -->
-					<button type="button" id="play-pause"><i class="material-icons">play_arrow</i></button>
-				</div>
-					<input type="range" id="seek-bar" step="0.1" value="0">
-				<div class="time">
-					<span id="curtimetext">0:00</span> <div class="slash">/</div> <span id="durtimetext">1:00</span>
-				</div>
-					<button type="button" id="mute"><i class="material-icons" width="44" height="36">volume_down</i></button>
-					<input type="range" id="volume-bar" min="0" max="1" step="0.01" value="0.5">
-					<button type="button" id="full-screen"><img id="imgscreen"src="https://png.icons8.com/small/32/000000/full-screen.png"/></button>
+					<div id="backcolour">
+					</div>
+					<div id="play">
+						<!-- <button type="button" id="play-pause"><img id="image"src="https://png.icons8.com/ios/50/000000/circled-pause-filled.png"/></button> -->
+						<button type="button" id="play-pause"><i class="material-icons">play_arrow</i></button>
+					</div>
+						<input type="range" id="seek-bar" step="0.1" value="0">
+					<div class="time">
+							<span id="curtimetext">0:00</span> <div class="slash">/</div> <span id="durtimetext">1:00</span>
+					</div>
+						<button type="button" id="mute"><i class="material-icons">volume_down</i></button>
+						<input type="range" id="volume-bar" min="0" max="1" step="0.01" value="0.5">
+						<!-- <button type="button" id="full-screen"><img id="imgscreen"src="https://png.icons8.com/small/32/000000/full-screen.png"/></button> -->
+						<button type="button" id="full-screen"><i class="material-icons">fullscreen</i></button>
 			</div>
 		</div>
 	</body>
