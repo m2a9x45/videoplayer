@@ -68,7 +68,8 @@
 }
 .video-container
 {
-		margin-top:50px;
+		margin-top:5%;
+		margin-left: 20%;
 		display:table;
     width:854px;;
     position:relative;

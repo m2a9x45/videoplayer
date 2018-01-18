@@ -39,8 +39,10 @@ function controlfade()
 }
 function playpause()
 {
+  console.log("enter playpause");
   var playButton = document.getElementById("play-pause");
   if (video.paused == true) {
+    console.log("play");
     // Play the video
     video.play();
     videoisplaying = true;
@@ -49,6 +51,7 @@ function playpause()
     playButton.innerHTML = "<i class='material-icons'>pause</i>";
 
   } else {
+    console.log("pause");
     // Pause the video
     video.pause();
     videoisplaying = false;
@@ -65,6 +68,10 @@ window.onload = function() {
   var playButton = document.getElementById("play-pause");
   var muteButton = document.getElementById("mute");
   var fullScreenButton = document.getElementById("full-screen");
+
+  var likeButton = document.getElementById("like");
+  var dislikeButton = document.getElementById("dislike");
+  var share = document.getElementById("share");
   // Sliders
   var seekBar = document.getElementById("seek-bar");
   var volumeBar = document.getElementById("volume-bar");
@@ -81,15 +88,27 @@ document.addEventListener("keydown",function()
 {
     //console.log("key pressed");
     var char = event.which;
-    //console.log(char);
+    console.log(char);
     if (char == 32) {
       playpause();
       showcontrols();
     }
 });
 
+var like = false;
+var dislike = false;
+
+likeButton.addEventListener("click",function(){
+  //will like video
+});
+dislikeButton.addEventListener("click",function(){
+ //will dislike video
+});
+
+
 playButton.addEventListener("click", function() {
   playpause();
+  showcontrols();
 });
 muteButton.addEventListener("click", function() {
   var currentvolume = video.volume; //as soon as mute button is click current volume is stored in currentvolume var
