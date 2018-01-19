@@ -64,6 +64,7 @@ window.onload = function() {
 
   // Video
   var video = document.getElementById("video");
+  var videocontianer = document.getElementById("video-source");
   // Buttons
   var playButton = document.getElementById("play-pause");
   var muteButton = document.getElementById("mute");
@@ -133,16 +134,33 @@ muteButton.addEventListener("click", function() {
 });
 fullScreenButton.addEventListener("click", function()
 {
-  if (video.requestFullscreen)
+  var isfull = false;
+  if (video.requestFullscreen && isfull == false)
   {
     video.requestFullscreen();
-  } else if (video.mozRequestFullScreen)
+    fullScreenButton.innerHTML = "<i class='material-icons'>fullscreen_exit</i>";
+    isfull = true;
+    console.log(isfull);
+  } else if (video.mozRequestFullScreen && isfull == false)
   {
     video.mozRequestFullScreen(); // Firefox
-  } else if (video.webkitRequestFullscreen)
+    fullScreenButton.innerHTML = "<i class='material-icons'>fullscreen_exit</i>";
+    isfull = true;
+    console.log(isfull);
+  } else if (video.webkitRequestFullscreen && isfull == false)
   {
     video.webkitRequestFullscreen(); // Chrome and Safari
+    fullScreenButton.innerHTML = "<i class='material-icons'>fullscreen_exit</i>";
+    isfull = true;
+    console.log(isfull);
   }
+  if (isfull == true)
+  {
+    console.log("exit");
+    //fullScreenButton.innerHTML = "<i class='material-icons'>fullscreen</i>";
+    document.webkitExitFullscreen();
+  }
+
 });
 // Event listener for the seek bar
 seekBar.addEventListener("input", function()
