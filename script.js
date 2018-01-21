@@ -101,9 +101,11 @@ var dislike = false;
 
 likeButton.addEventListener("click",function(){
   //will like video
+  console.log("like");
 });
 dislikeButton.addEventListener("click",function(){
  //will dislike video
+ console.log("dislike");
 });
 
 
